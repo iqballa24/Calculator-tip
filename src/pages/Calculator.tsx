@@ -19,8 +19,6 @@ const Calculator = () => {
   const numberOfPeopleIsEmpty =
     inputBill !== 0 && selectTip !== 0 && inputNumberPeople === 0;
 
-  console.log(numberOfPeopleIsEmpty);
-
   const onChangeValueBill = (val: number) => {
     dispatch(calculatorActions.changeInputBill(val));
   };
@@ -38,7 +36,6 @@ const Calculator = () => {
   ];
 
   useEffect(() => {
-    console.log("Dispatch will be run");
     dispatch(calculatorActions.calculateTipAmount());
     dispatch(calculatorActions.calculateTotal());
   }, [inputBill, inputNumberPeople, selectTip]);
