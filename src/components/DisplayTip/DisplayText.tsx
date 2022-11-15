@@ -3,7 +3,7 @@ import styled from "styled-components";
 const DisplayText = (props: { title: string; text: string }) => {
   return (
     <Wrapper>
-      <h1>{props.title}</h1>
+      <strong>{props.title}</strong>
       <p>{props.text}</p>
     </Wrapper>
   );
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  h1 {
+  strong {
     color: var(--white);
     font-size: 18px;
   }

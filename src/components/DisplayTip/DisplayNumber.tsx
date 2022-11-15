@@ -4,7 +4,7 @@ const DisplayNumber = (props: { total: number }) => {
   const totalOfNumber = props.total.toFixed(2);
   return (
     <Wrapper>
-      <h1>$ {totalOfNumber}</h1>
+      <strong>${totalOfNumber}</strong>
     </Wrapper>
   );
 };
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  h1 {
+  strong {
     color: var(--strong__cyan);
     font-size: 38px;
   }
