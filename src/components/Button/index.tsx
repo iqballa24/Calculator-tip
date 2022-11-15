@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 interface Props {
-  primary: boolean;
+  primary?: boolean;
+  onReset?: any;
+  disabled: boolean;
 }
 
 const Button = styled.button<Props>`
@@ -21,6 +23,15 @@ const Button = styled.button<Props>`
   padding: 10px;
   margin-top: auto;
 
+  &:disabled {
+    background-color: var(--dark__grayish__cyan);
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: var(--dark__grayish__cyan);
+    }
+  }
+
   &:hover {
     background-color: ${(props) =>
       props.primary ? "var(--light__grayish__cyan)" : "var(--strong__cyan)"};
@@ -29,7 +40,11 @@ const Button = styled.button<Props>`
 `;
 
 const index = (props: Props) => {
-  return <Button primary>reset</Button>;
+  return (
+    <Button primary onClick={props.onReset} disabled={props.disabled}>
+      reset
+    </Button>
+  );
 };
 
 export default index;

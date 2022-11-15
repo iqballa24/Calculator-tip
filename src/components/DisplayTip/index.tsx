@@ -4,18 +4,23 @@ import DisplayRow from "./DisplayRow";
 import DisplayText from "./DisplayText";
 import DisplayNumber from "./DisplayNumber";
 
-const DisplayTip = () => {
+const DisplayTip = (props: {
+  tipAmount: number;
+  total: number;
+  onReset: any;
+}) => {
+  const totalIsEmpty = props.total === 0;
   return (
     <WrapperDisplayTip>
       <DisplayRow>
         <DisplayText title="Tip Amount" text="/ person" />
-        <DisplayNumber total={0} />
+        <DisplayNumber total={props.tipAmount} />
       </DisplayRow>
       <DisplayRow>
         <DisplayText title="Total" text="/ person" />
-        <DisplayNumber total={0} />
+        <DisplayNumber total={props.total} />
       </DisplayRow>
-      <Button primary/>
+      <Button primary onReset={props.onReset} disabled={totalIsEmpty} />
     </WrapperDisplayTip>
   );
 };

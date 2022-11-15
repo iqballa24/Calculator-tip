@@ -1,28 +1,36 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styled from "styled-components";
 import unChekedOption from "../../utils/uncheckedOption";
+import { useSelector } from "react-redux";
 
 const elements = document.getElementsByTagName("input");
 
-const TipButton = (props: { options: any }) => {
+const TipButton = (props: { options: any; onChangeSelectedTip: any }) => {
+  const selectTip = useSelector((state: any) => state.calculator.selectTip);
   const [customValue, setCustomValue] = useState(0);
-  const [selectedOption, setSelectedOption] = useState(1);
 
   const customInputHandler = (e: any) => {
     const value = +e.target.value;
     setCustomValue((prev) => value);
-    setSelectedOption((prev) => value);
+    props.onChangeSelectedTip(value);
     unChekedOption(elements);
   };
 
   const selectOptionHandler = (e: any) => {
     const value = +e.target.value;
-    setSelectedOption((prev) => value);
+    props.onChangeSelectedTip(value);
   };
 
   const customInputIsEmpty = useMemo(() => {
     return customValue === 0;
   }, [customValue]);
+
+  useEffect(() => {
+    if (selectTip === 0) {
+      unChekedOption(elements);
+      setCustomValue(0);
+    }
+  }, [selectTip]);
 
   return (
     <Wrapper>
@@ -45,6 +53,7 @@ const TipButton = (props: { options: any }) => {
           placeholder="Custom"
           value={customValue === 0 ? "" : customValue}
           onChange={customInputHandler}
+          min={0}
         />
       </li>
     </Wrapper>
@@ -89,7 +98,12 @@ const Wrapper = styled.ul`
   }
 
   input[type="radio"]:disabled ~ label {
+    cursor: not-allowed;
     background: var(--light__grayish__cyan);
+
+    &:hover {
+      background: var(--light__grayish__cyan);
+    }
   }
 
   input[type="radio"]:hover ~ label {
@@ -108,5 +122,9 @@ const Wrapper = styled.ul`
     background-color: var(--very__light__grayish__cyan);
     text-align: center;
     font-weight: 700;
+  }
+
+  input:focus {
+    outline: 3px solid var(--strong__cyan);
   }
 `;

@@ -1,17 +1,10 @@
 import styled from "styled-components";
 
 const Column = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.8rem;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
 `;
 
 const Header = styled.header`
@@ -42,4 +35,28 @@ const Section = styled.section`
   }
 `;
 
-export { Wrapper, Column, Header, Label, Section };
+const Main = styled.main`
+  margin: auto;
+  width: 100%;
+  max-width: 880px;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+`;
+
+const Footer = styled.footer`
+  text-align: center;
+  margin-top: 2.4rem;
+  p {
+    color: var(--grayish__cyan);
+    font-size: 12px;
+    a {
+      color: var(--very__dark__cyan);
+      &:hover {
+        color: var(--strong__cyan);
+      }
+    }
+  }
+`;
+
+export { Column, Header, Label, Section, Main, Footer };
