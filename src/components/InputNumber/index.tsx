@@ -6,7 +6,7 @@ interface Props {
   name: string | undefined;
   className: any;
   onChangeValue?: any;
-  value: number;
+  value: number | string;
   invalid: boolean;
 }
 
@@ -26,7 +26,7 @@ const InputNumber = (props: Props) => {
         placeholder="0"
         className={props.className || ""}
         onChange={onChangeHandler}
-        value={props.value}
+        value={props.value === 0 ? "" : props.value}
         invalid={props.invalid}
       />
     </React.Fragment>
@@ -45,7 +45,8 @@ const Input = styled.input<Props>`
   font-weight: 700;
 
   &:focus {
-    outline: ${(props) => (props.invalid ? "3px solid red" : "3px solid var(--strong__cyan)")};
+    outline: ${(props) =>
+      props.invalid ? "3px solid red" : "3px solid var(--strong__cyan)"};
   }
 
   &#bill {
