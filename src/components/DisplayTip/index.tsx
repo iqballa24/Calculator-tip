@@ -7,7 +7,7 @@ import DisplayNumber from "./DisplayNumber";
 const DisplayTip = (props: {
   tipAmount: number;
   total: number;
-  onReset: any;
+  onReset: () => void;
 }) => {
   const totalIsEmpty = props.total === 0;
   return (

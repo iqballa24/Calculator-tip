@@ -1,20 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-interface Props {
-  id: string | undefined;
-  name: string | undefined;
-  className: any;
-  onChangeValue?: any;
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
+  id: string;
+  name: string;
+  className: string;
+  onChange: (val: React.ChangeEvent<HTMLInputElement>) => void;
   value: number | string;
   invalid: boolean;
 }
 
-const InputNumber = (props: Props) => {
-  const onChangeHandler = (e: any) => {
-    const value = +e.target.value;
-    props.onChangeValue(value);
-  };
+const InputNumber: React.FC<Props> = (props) => {
   return (
     <React.Fragment>
       {props.invalid && <InvalidText>Can't be zero</InvalidText>}
@@ -25,7 +21,7 @@ const InputNumber = (props: Props) => {
         type="number"
         placeholder="0"
         className={props.className || ""}
-        onChange={onChangeHandler}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange(e)}
         value={props.value === 0 ? "" : props.value}
         invalid={props.invalid}
       />

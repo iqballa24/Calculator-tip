@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface Props {
   primary?: boolean;
-  onReset?: any;
+  onReset?: () => void;
   disabled: boolean;
 }
 

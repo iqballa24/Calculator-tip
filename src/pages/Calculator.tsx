@@ -19,12 +19,14 @@ const Calculator = () => {
   const numberOfPeopleIsEmpty =
     inputBill !== 0 && selectTip !== 0 && inputNumberPeople === 0;
 
-  const onChangeValueBill = (val: number) => {
-    dispatch(calculatorActions.changeInputBill(val));
+  const onChangeValueBill = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = +e.target.value;
+    dispatch(calculatorActions.changeInputBill(value));
   };
 
-  const onChangeValuePeople = (val: number) => {
-    dispatch(calculatorActions.changeInputPeople(val));
+  const onChangeValuePeople = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = +e.target.value;
+    dispatch(calculatorActions.changeInputPeople(value));
   };
 
   const onChangeSelectedTip = (val: number) => {
@@ -49,7 +51,7 @@ const Calculator = () => {
             id="bill"
             name="bill"
             className={""}
-            onChangeValue={onChangeValueBill}
+            onChange={onChangeValueBill}
             value={inputBill}
             invalid={false}
           />
@@ -67,7 +69,7 @@ const Calculator = () => {
             id="number_people"
             name="number_people"
             className={""}
-            onChangeValue={onChangeValuePeople}
+            onChange={onChangeValuePeople}
             value={inputNumberPeople}
             invalid={numberOfPeopleIsEmpty}
           />

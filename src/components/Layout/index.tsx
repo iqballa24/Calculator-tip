@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Header, Main, Footer } from "../CommonUI/Style";
 
-const index = (props: any) => {
+const index: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <Fragment>
       <Header>

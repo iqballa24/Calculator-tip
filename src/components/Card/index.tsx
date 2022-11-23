@@ -1,8 +1,3 @@
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactFragment,
-} from "react";
 import styled from "styled-components";
 
 const WrapperCard = styled.section`
@@ -25,11 +20,7 @@ const WrapperCard = styled.section`
     }
 `;
 
-const Card = (props: {
-  children:
-    | ReactElement<any, string | JSXElementConstructor<any>>
-    | ReactFragment;
-}) => {
+const Card: React.FC<{ children: React.ReactNode }> = (props) => {
   return <WrapperCard>{props.children}</WrapperCard>;
 };
 
